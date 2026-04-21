@@ -141,7 +141,6 @@
     const submitBtn = document.getElementById("submitBtn");
     const formStatus = document.getElementById("form-status");
     const defaultButtonText = "Send Enquiry";
-    const thankYouUrl = `${window.location.origin}/thank-you.html`;
 
     function showMessageError() {
       messageError.style.display = "block";
@@ -185,10 +184,9 @@
       }
     });
 
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
+    form.addEventListener("submit", function (e) {
       if (projectType.value === "other" && message.value.trim() === "") {
+        e.preventDefault();
         clearFormStatus();
         showMessageError();
         message.focus();
@@ -199,27 +197,6 @@
       clearMessageError();
       setSubmittingState(true);
       showFormStatus("Sending your enquiry...", "success");
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: {
-            Accept: "application/json"
-          }
-        });
-
-        if (response.ok) {
-          window.location.assign(thankYouUrl);
-          return;
-        }
-
-        setSubmittingState(false);
-        showFormStatus("Something went wrong. Please try again.", "error");
-      } catch (error) {
-        setSubmittingState(false);
-        showFormStatus("Network error. Please try again.", "error");
-      }
     });
   </script>
 </body>
