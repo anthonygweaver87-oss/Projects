@@ -198,6 +198,7 @@
       clearMessageError();
       setSubmittingState(true);
       showFormStatus("Sending your enquiry...", "success");
+      console.log("Submitting FL87 form...");
 
       try {
         const response = await fetch(form.action, {
@@ -212,10 +213,19 @@
         const contentType = response.headers.get("content-type") || "";
         if (contentType.includes("application/json")) {
           result = await response.json();
+        } else {
+          result = await response.text();
         }
 
+        console.log("Form response status:", response.status);
+        console.log("Form response content type:", contentType);
+        console.log("Form response payload:", result);
+
         if (response.ok) {
-          window.location.assign(thankYouUrl);
+          showFormStatus("Success detected. Redirecting now...", "success");
+          setTimeout(function () {
+            window.location.assign(thankYouUrl);
+          }, 300);
           return;
         }
 
@@ -224,15 +234,16 @@
             return item.message;
           }).join(" ");
           setSubmittingState(false);
-          showFormStatus(errorMessage, "error");
+          showFormStatus(`Formspree error: ${errorMessage}`, "error");
           return;
         }
 
         setSubmittingState(false);
-        showFormStatus("Something went wrong. Please try again.", "error");
+        showFormStatus(`Unexpected response: ${typeof result === "string" ? result : JSON.stringify(result)}`, "error");
       } catch (error) {
+        console.error("Form submit failed:", error);
         setSubmittingState(false);
-        showFormStatus("Network error. Please try again.", "error");
+        showFormStatus(`Network error: ${error.message}`, "error");
       }
     });
   </script>
