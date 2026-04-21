@@ -208,8 +208,23 @@
           }
         });
 
+        let result = null;
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          result = await response.json();
+        }
+
         if (response.ok) {
           window.location.assign(thankYouUrl);
+          return;
+        }
+
+        if (result && Array.isArray(result.errors) && result.errors.length > 0) {
+          const errorMessage = result.errors.map(function (item) {
+            return item.message;
+          }).join(" ");
+          setSubmittingState(false);
+          showFormStatus(errorMessage, "error");
           return;
         }
 
