@@ -1,3 +1,8 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -9,6 +14,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
+  width: 100%;
 }
 
 h1 {
@@ -23,6 +29,12 @@ p {
   max-width: 700px;
   margin: 0 auto 30px;
   line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .nav {
@@ -240,6 +252,18 @@ p {
   margin: 0 auto 10px;
   text-align: center;
   max-width: none;
+}
+
+.section-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.section-logo-img {
+  width: min(320px, 82vw);
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(123, 44, 255, 0.18)) drop-shadow(0 0 26px rgba(255, 106, 0, 0.12));
 }
 
 .trust-section {
@@ -497,6 +521,17 @@ p {
   }
 }
 
+@keyframes brandGlowMove {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.9;
+  }
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 38px;
@@ -527,11 +562,11 @@ p {
 
   .nav a {
     font-size: 12px;
-    padding: 8px 12px;
+    padding: 8px 10px;
   }
 
   .hero {
-    padding: 130px 20px 60px;
+    padding: 150px 16px 60px;
     min-height: auto;
   }
 
@@ -546,7 +581,7 @@ p {
   .hero-actions .work-btn,
   .hero-actions .hero-secondary-btn {
     width: 100%;
-    max-width: 280px;
+    max-width: 260px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -569,6 +604,8 @@ p {
   .work-item {
     width: 100%;
     max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .section-kicker {
@@ -593,6 +630,24 @@ p {
   .social-preview-section,
   .contact-page {
     overflow-x: hidden;
+  }
+
+  .section-logo-img {
+    width: min(250px, 84vw);
+  }
+
+  .brand-strip {
+    padding: 40px 16px;
+  }
+
+  .brand-strip img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .brand-strip::before {
+    width: 140%;
+    height: 180px;
   }
 }
 
@@ -731,25 +786,38 @@ p {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 60px 20px;
   position: relative;
+  overflow: hidden;
 }
 
 .brand-strip img {
   max-width: 1100px;
-  width: 100%;
+  width: min(1100px, 100%);
   border-radius: 16px;
   position: relative;
   z-index: 2;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Glow behind */
 .brand-strip::before {
   content: "";
   position: absolute;
-  width: 900px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(123,44,255,0.25), rgba(255,106,0,0.15), transparent);
-  filter: blur(60px);
-  opacity: 0.8;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 220px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    rgba(123, 44, 255, 0.35),
+    rgba(255, 106, 0, 0.25),
+    rgba(123, 44, 255, 0.35)
+  );
+  filter: blur(80px);
+  opacity: 0.72;
+  pointer-events: none;
+  animation: brandGlowMove 8s ease-in-out infinite alternate;
 }
