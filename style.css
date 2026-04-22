@@ -59,6 +59,7 @@ p {
   flex-direction: column;
   align-items: flex-start;
   line-height: 1;
+  position: relative;
 }
 
 .logo-img {
@@ -66,14 +67,22 @@ p {
   width: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.18));
+  filter: drop-shadow(0 0 12px rgba(123, 44, 255, 0.28)) drop-shadow(0 0 18px rgba(255, 106, 0, 0.12));
+  animation: logoGlowPulse 4.2s ease-in-out infinite;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.logo-wrap:hover .logo-img {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 16px rgba(123, 44, 255, 0.34)) drop-shadow(0 0 24px rgba(255, 106, 0, 0.18));
 }
 
 .logo-text {
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: #9f98ff;
-  margin-top: 2px;
+  color: #b6b0ff;
+  margin-top: 3px;
+  text-shadow: 0 0 10px rgba(123, 44, 255, 0.22);
 }
 
 .hero {
@@ -402,6 +411,18 @@ p {
   border-color: rgba(79, 70, 229, 0.45);
 }
 
+@keyframes logoGlowPulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 14px rgba(255, 106, 0, 0.10));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(123, 44, 255, 0.32)) drop-shadow(0 0 22px rgba(255, 106, 0, 0.16));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 14px rgba(255, 106, 0, 0.10));
+  }
+}
+
 @keyframes heroGlowPulse {
   0% {
     transform: translateY(-14px) scale(0.98);
@@ -598,5 +619,18 @@ p {
 
   .form-error {
     color: #d9363e;
+  }
+
+  .logo-img {
+    filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.18)) drop-shadow(0 0 14px rgba(255, 106, 0, 0.10));
+  }
+
+  .logo-wrap:hover .logo-img {
+    filter: drop-shadow(0 0 14px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 20px rgba(255, 106, 0, 0.14));
+  }
+
+  .logo-text {
+    color: #6f63ff;
+    text-shadow: 0 0 8px rgba(123, 44, 255, 0.14);
   }
 }
