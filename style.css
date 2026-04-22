@@ -185,6 +185,10 @@ p {
   gap: 16px;
   flex-wrap: wrap;
   margin-top: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-secondary-btn {
@@ -534,12 +538,17 @@ p {
   .hero-actions {
     flex-direction: column;
     gap: 12px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-actions .work-btn,
   .hero-actions .hero-secondary-btn {
     width: 100%;
     max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .work,
