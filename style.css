@@ -727,3 +727,29 @@ p {
     text-shadow: 0 0 10px rgba(123, 44, 255, 0.18), 0 0 18px rgba(123, 44, 255, 0.08);
   }
 }
+.brand-strip {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.brand-strip img {
+  max-width: 1100px;
+  width: 100%;
+  border-radius: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow behind */
+.brand-strip::before {
+  content: "";
+  position: absolute;
+  width: 900px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(123,44,255,0.25), rgba(255,106,0,0.15), transparent);
+  filter: blur(60px);
+  opacity: 0.8;
+}
