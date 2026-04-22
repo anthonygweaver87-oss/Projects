@@ -60,6 +60,24 @@ p {
   align-items: flex-start;
   line-height: 1;
   position: relative;
+  isolation: isolate;
+}
+
+.logo-wrap::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: -10px;
+  width: 130px;
+  height: 72px;
+  background:
+    radial-gradient(circle at 35% 45%, rgba(123, 44, 255, 0.34), transparent 46%),
+    radial-gradient(circle at 72% 48%, rgba(255, 106, 0, 0.24), transparent 42%);
+  filter: blur(14px);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: -1;
+  animation: logoAuraPulse 4.2s ease-in-out infinite;
 }
 
 .logo-img {
@@ -67,22 +85,22 @@ p {
   width: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(123, 44, 255, 0.28)) drop-shadow(0 0 18px rgba(255, 106, 0, 0.12));
+  filter: drop-shadow(0 0 14px rgba(123, 44, 255, 0.34)) drop-shadow(0 0 24px rgba(255, 106, 0, 0.18));
   animation: logoGlowPulse 4.2s ease-in-out infinite;
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .logo-wrap:hover .logo-img {
-  transform: scale(1.03);
-  filter: drop-shadow(0 0 16px rgba(123, 44, 255, 0.34)) drop-shadow(0 0 24px rgba(255, 106, 0, 0.18));
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 18px rgba(123, 44, 255, 0.42)) drop-shadow(0 0 30px rgba(255, 106, 0, 0.24));
 }
 
 .logo-text {
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: #b6b0ff;
+  color: #c5c0ff;
   margin-top: 3px;
-  text-shadow: 0 0 10px rgba(123, 44, 255, 0.22);
+  text-shadow: 0 0 14px rgba(123, 44, 255, 0.34), 0 0 24px rgba(123, 44, 255, 0.16);
 }
 
 .hero {
@@ -413,13 +431,28 @@ p {
 
 @keyframes logoGlowPulse {
   0% {
-    filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 14px rgba(255, 106, 0, 0.10));
+    filter: drop-shadow(0 0 12px rgba(123, 44, 255, 0.28)) drop-shadow(0 0 18px rgba(255, 106, 0, 0.14));
   }
   50% {
-    filter: drop-shadow(0 0 14px rgba(123, 44, 255, 0.32)) drop-shadow(0 0 22px rgba(255, 106, 0, 0.16));
+    filter: drop-shadow(0 0 20px rgba(123, 44, 255, 0.42)) drop-shadow(0 0 32px rgba(255, 106, 0, 0.24));
   }
   100% {
-    filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 14px rgba(255, 106, 0, 0.10));
+    filter: drop-shadow(0 0 12px rgba(123, 44, 255, 0.28)) drop-shadow(0 0 18px rgba(255, 106, 0, 0.14));
+  }
+}
+
+@keyframes logoAuraPulse {
+  0% {
+    opacity: 0.72;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 0.72;
+    transform: scale(0.98);
   }
 }
 
@@ -509,6 +542,12 @@ p {
 
   .logo-img {
     height: 34px;
+  }
+  .logo-wrap::before {
+    left: -10px;
+    top: -8px;
+    width: 104px;
+    height: 58px;
   }
 }
 
@@ -622,15 +661,19 @@ p {
   }
 
   .logo-img {
-    filter: drop-shadow(0 0 10px rgba(123, 44, 255, 0.18)) drop-shadow(0 0 14px rgba(255, 106, 0, 0.10));
+    filter: drop-shadow(0 0 12px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 20px rgba(255, 106, 0, 0.14));
   }
-
+  .logo-wrap::before {
+    background:
+      radial-gradient(circle at 35% 45%, rgba(123, 44, 255, 0.20), transparent 46%),
+      radial-gradient(circle at 72% 48%, rgba(255, 106, 0, 0.16), transparent 42%);
+    opacity: 1;
+  }
   .logo-wrap:hover .logo-img {
-    filter: drop-shadow(0 0 14px rgba(123, 44, 255, 0.24)) drop-shadow(0 0 20px rgba(255, 106, 0, 0.14));
+    filter: drop-shadow(0 0 16px rgba(123, 44, 255, 0.30)) drop-shadow(0 0 24px rgba(255, 106, 0, 0.18));
   }
-
   .logo-text {
     color: #6f63ff;
-    text-shadow: 0 0 8px rgba(123, 44, 255, 0.14);
+    text-shadow: 0 0 10px rgba(123, 44, 255, 0.18), 0 0 18px rgba(123, 44, 255, 0.08);
   }
 }
