@@ -8,6 +8,7 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -503,10 +504,21 @@ p {
 
   .nav {
     padding: 14px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
   }
 
   .nav nav {
     gap: 8px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .logo-wrap {
+    align-items: center;
   }
 
   .nav a {
@@ -563,7 +575,15 @@ p {
     top: 50%;
     width: 94px;
     height: 52px;
-    transform: translate(-50%, -54%);
+    transform: translate(-50%, -50%);
+  }
+
+  .hero,
+  .work,
+  .contact,
+  .social-preview-section,
+  .contact-page {
+    overflow-x: hidden;
   }
 }
 
